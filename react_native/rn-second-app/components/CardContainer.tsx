@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 
 interface CardContainerProps {
   children: any;
-  style: any;
+  style?: any;
 }
 
 export const CardContainer: React.FC<CardContainerProps> = (props) => {
