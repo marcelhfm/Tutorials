@@ -50,7 +50,7 @@ class ThemeAnimationPage extends StatelessWidget {
                             children: [
                               AnimatedPositioned(
                                 child: AnimatedOpacity(
-                                    duration: Duration(milliseconds: 300),
+                                    duration: const Duration(milliseconds: 300),
                                     opacity: themeService.isDarkModeOn ? 1 : 0,
                                     child: const Moon()),
                                 top: themeService.isDarkModeOn ? 100 : 130,
