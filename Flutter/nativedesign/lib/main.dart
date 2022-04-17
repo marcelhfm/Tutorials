@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return PlatformApp(
       title: "native design",
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: const LoginPage(),
       material: (_, __) => MaterialAppData(theme: materialThemeData),
       cupertino: (_, __) => CupertinoAppData(theme: cupertinoTheme),
     );

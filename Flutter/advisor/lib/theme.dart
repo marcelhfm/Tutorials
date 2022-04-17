@@ -17,10 +17,19 @@ class AppTheme {
 
   static const Color _iconColor = Colors.white;
 
-  static const TextStyle _lightHeadingText =
-      TextStyle(color: _lightTextColorPrimary, fontFamily: "Rubik");
-  static const TextStyle _lightBodyText =
-      TextStyle(color: _lightTextColorPrimary, fontFamily: "Rubik");
+  static const Color _accentColorDark = Color.fromRGBO(74, 217, 217, 1);
+
+  static const TextStyle _lightHeadingText = TextStyle(
+      color: _lightTextColorPrimary,
+      fontFamily: "Rubik",
+      fontWeight: FontWeight.bold,
+      fontSize: 20);
+  static const TextStyle _lightBodyText = TextStyle(
+      color: _lightTextColorPrimary,
+      fontFamily: "Rubik",
+      fontStyle: FontStyle.italic,
+      fontWeight: FontWeight.bold,
+      fontSize: 16);
 
   static const TextTheme _lightTextTheme =
       // ignore: unnecessary_const
@@ -34,21 +43,21 @@ class AppTheme {
       ),
       bottomAppBarColor: _appbarColorLight,
       colorScheme: ColorScheme.light(
-        primary: _lightPrimaryColor,
-        onPrimary: _lightOnPrimaryColor,
-        primaryContainer: _lightPrimaryVariantColor,
-      ),
+          primary: _lightPrimaryColor,
+          onPrimary: _lightOnPrimaryColor,
+          primaryContainer: _lightPrimaryVariantColor,
+          secondary: _accentColorDark),
       textTheme: _lightTextTheme);
 
   static final TextStyle _darkThemeHeadingTextStyle =
       _lightHeadingText.copyWith(color: _darkTextColorPrimary);
 
-  static final TextStyle _darkThemeBodyeTextStyle =
+  static final TextStyle _darkThemeBodyTextStyle =
       _lightBodyText.copyWith(color: _darkTextColorPrimary);
 
   static final TextTheme _darkTextTheme = TextTheme(
     headline1: _darkThemeHeadingTextStyle,
-    bodyText1: _darkThemeBodyeTextStyle,
+    bodyText1: _darkThemeBodyTextStyle,
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -59,9 +68,9 @@ class AppTheme {
       ),
       bottomAppBarColor: _appbarColorDark,
       colorScheme: ColorScheme.dark(
-        primary: _darkPrimaryColor,
-        onPrimary: _darkOnPrimaryColor,
-        primaryContainer: _darkPrimaryVariantColor,
-      ),
+          primary: _darkPrimaryColor,
+          onPrimary: _darkOnPrimaryColor,
+          primaryContainer: _darkPrimaryVariantColor,
+          secondary: _accentColorDark),
       textTheme: _darkTextTheme);
 }
