@@ -1,23 +1,39 @@
+import 'package:advisor/domain/usecases/advisor_usecases.dart';
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
+
+import '../../domain/entities/advice_entity.dart';
+import '../../domain/failures/failures.dart';
 
 part 'advisor_event.dart';
 part 'advisor_state.dart';
 
 class AdvisorBloc extends Bloc<AdvisorEvent, AdvisorState> {
-  AdvisorBloc() : super(AdvisorInitial()) {
-    Future sleep1() {
-      return Future.delayed(const Duration(seconds: 2), () => "1");
-    }
+  final AdvisorUsecases usecases;
 
+  AdvisorBloc({required this.usecases}) : super(AdvisorInitial()) {
     on<AdviceRequestEvent>((event, emit) async {
       emit(AdvisorStateLoading());
 
-      //do something
-      await sleep1(); //Fake Network req
-      //get advice
+      Either<Failure, AdviceEntity> adviceOrFailure =
+          await usecases.getAdviceUsecase();
 
-      emit(AdvisorStateLoaded(advice: "Advice Test"));
+      adviceOrFailure.fold(
+        (failure) => emit(AdvisorError(message: _mapFailureToMessage(failure))),
+        (advice) => emit(AdvisorStateLoaded(advice: advice.advice)),
+      );
     });
+  }
+
+  String _mapFailureToMessage(failure) {
+    switch (failure.runtimeType) {
+      case ServerFailure:
+        return 'Oops, Server Error. Please try again later.';
+      case GeneralFailure:
+        return 'Oops, something went wrong. Please try again later.';
+      default:
+        return 'Oops, something went wrong. Please try again later.';
+    }
   }
 }

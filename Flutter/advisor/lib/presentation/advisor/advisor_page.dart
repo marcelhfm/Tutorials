@@ -36,7 +36,9 @@ class AdvisorPage extends StatelessWidget {
                             } else if (adviceState is AdvisorStateLoaded) {
                               return AdviceField(advice: adviceState.advice);
                             } else if (adviceState is AdvisorError) {
-                              return const ErrorMessage();
+                              return ErrorMessage(
+                                message: adviceState.message,
+                              );
                             }
                             return const Placeholder();
                           }))),

@@ -13,4 +13,8 @@ class AdvisorStateLoaded extends AdvisorState {
   AdvisorStateLoaded({required this.advice});
 }
 
-class AdvisorError extends AdvisorState {}
+class AdvisorError extends AdvisorState {
+  final String message;
+
+  AdvisorError({required this.message});
+}
