@@ -17,7 +17,7 @@ class AdvisorRepositoryImpl implements AdvisorRepository {
           await advisorRemoteDatasource.getRandomAdviceFromAPI();
       return Right(remoteAdvice);
     } catch (e) {
-      if (e.runtimeType is ServerException) {
+      if (e is ServerException) {
         return left(ServerFailure());
       } else {
         return Left(GeneralFailure());

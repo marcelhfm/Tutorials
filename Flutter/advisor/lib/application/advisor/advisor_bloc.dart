@@ -1,6 +1,7 @@
 import 'package:advisor/domain/usecases/advisor_usecases.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/entities/advice_entity.dart';
@@ -8,6 +9,10 @@ import '../../domain/failures/failures.dart';
 
 part 'advisor_event.dart';
 part 'advisor_state.dart';
+
+const GENERAL_FAILURE_MESSAGE =
+    "Oops, something went wrong. Please try again later.";
+const SERVER_FAILURE_MESSAGE = "Oops, Server Error. Please try again later.";
 
 class AdvisorBloc extends Bloc<AdvisorEvent, AdvisorState> {
   final AdvisorUsecases usecases;
@@ -29,11 +34,11 @@ class AdvisorBloc extends Bloc<AdvisorEvent, AdvisorState> {
   String _mapFailureToMessage(failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return 'Oops, Server Error. Please try again later.';
+        return SERVER_FAILURE_MESSAGE;
       case GeneralFailure:
-        return 'Oops, something went wrong. Please try again later.';
+        return GENERAL_FAILURE_MESSAGE;
       default:
-        return 'Oops, something went wrong. Please try again later.';
+        return GENERAL_FAILURE_MESSAGE;
     }
   }
 }
