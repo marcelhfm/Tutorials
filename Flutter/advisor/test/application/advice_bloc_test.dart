@@ -25,13 +25,13 @@ void main() {
   });
 
   group("AdviceRequestEvent", () {
-    final t_Advice = AdviceEntity(id: 1, advice: "test");
-    final t_AdviceString = "test";
+    final tAdvice = AdviceEntity(id: 1, advice: "test");
+    const tAdviceString = "test";
 
     test("should call usecase if event is triggered", () async {
       // Arrange
       when(mockAdvisorUsecases.getAdviceUsecase())
-          .thenAnswer((_) async => Right(t_Advice));
+          .thenAnswer((_) async => Right(tAdvice));
 
       // Act
       advisorBloc.add(AdviceRequestEvent());
@@ -45,12 +45,12 @@ void main() {
     test("should emit loading loaded after event is triggered", () async {
       // Arrange
       when(mockAdvisorUsecases.getAdviceUsecase())
-          .thenAnswer((_) async => Right(t_Advice));
+          .thenAnswer((_) async => Right(tAdvice));
 
       // Assert later
       final expected = [
         AdvisorStateLoading(),
-        AdvisorStateLoaded(advice: t_AdviceString),
+        AdvisorStateLoaded(advice: tAdviceString),
       ];
 
       expectLater(advisorBloc.stream, emitsInOrder(expected));
