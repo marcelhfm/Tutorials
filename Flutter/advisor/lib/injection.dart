@@ -1,4 +1,5 @@
 import 'package:advisor/application/advisor/advisor_bloc.dart';
+import 'package:advisor/application/theme/theme_service.dart';
 import 'package:advisor/domain/repositories/advisor_repo.dart';
 import 'package:advisor/domain/repositories/theme_repo.dart';
 import 'package:advisor/domain/usecases/advisor_usecases.dart';
@@ -13,8 +14,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  //! Blocs
+  //! Blocs / Application Layer
   sl.registerFactory(() => AdvisorBloc(usecases: sl()));
+  sl.registerLazySingleton<ThemeService>(
+      () => ThemeServiceImpl(themeRepository: sl()));
 
   //! Use cases
   sl.registerLazySingleton(() => AdvisorUsecases(advisorRepository: sl()));
