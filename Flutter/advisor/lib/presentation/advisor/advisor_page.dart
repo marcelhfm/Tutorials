@@ -17,13 +17,24 @@ class AdvisorPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          centerTitle: true,
+          centerTitle: false,
           actions: [
+            Visibility(
+              visible: !Provider.of<ThemeService>(context).useSystemTheme,
+              child: Switch(
+                  value: Provider.of<ThemeService>(context).isDarkModeOn,
+                  onChanged: (_) {
+                    Provider.of<ThemeService>(context, listen: false)
+                        .toggleTheme();
+                  }),
+            ),
+            const Text("System: "),
             Switch(
-                value: Provider.of<ThemeService>(context).isDarkModeOn,
+                value: Provider.of<ThemeService>(context).useSystemTheme,
+                activeColor: Colors.redAccent,
                 onChanged: (_) {
                   Provider.of<ThemeService>(context, listen: false)
-                      .toggleTheme();
+                      .toggleUseSystemTheme();
                 })
           ],
           title: Text("Advisor", style: themeData.textTheme.headline1),
