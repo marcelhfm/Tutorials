@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: constant_identifier_names
 const CACHE_THEME_MODE = 'CACHE_THEME_MODE';
+// ignore: constant_identifier_names
 const CACHE_USE_SYSTEM_THEME = 'CACHE_USE_SYSTEM_THEME';
 
 abstract class ThemeLocalDatasource {
