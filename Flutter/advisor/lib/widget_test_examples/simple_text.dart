@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyWidget extends StatelessWidget {
+  static const messageKey = Key("messageWidget");
   const MyWidget({
     Key? key,
     required this.title,
@@ -19,7 +20,7 @@ class MyWidget extends StatelessWidget {
           title: Text(title),
         ),
         body: Center(
-          child: Text(message),
+          child: Text(message, key: messageKey),
         ),
       ),
     );

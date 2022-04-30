@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   bloc: ^8.0.3
+  bloc_test: ^9.0.3
   flutter_bloc: ^8.0.1
   dartz: ^0.10.1
   http: ^0.13.4

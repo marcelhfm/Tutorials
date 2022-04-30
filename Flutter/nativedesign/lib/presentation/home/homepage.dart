@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
                 }),
             PlatformIconButton(
               onPressed: () {
+                // ignore: avoid_print
                 print("pressed");
               },
               materialIcon: const Icon(Icons.info),
@@ -63,10 +64,12 @@ class _HomePageState extends State<HomePage> {
               material: (_, child, __) => InkWell(
                   child: child,
                   onTap: () {
+                    // ignore: avoid_print
                     print("Tap");
                   }),
               cupertino: (_, child, __) => GestureDetector(
                   onTap: () {
+                    // ignore: avoid_print
                     print("Tap iOS");
                   },
                   child: child),
