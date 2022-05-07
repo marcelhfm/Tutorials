@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "942985639490",
+    "project_id": "tutorialfluttertodo",
+    "storage_bucket": "tutorialfluttertodo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:942985639490:android:03a09203e22779acc05fdb",
+        "android_client_info": {
+          "package_name": "com.example.todo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "942985639490-u8rf4oaepomk8o0c03j94kob38v0hg1f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.todo",
+            "certificate_hash": "d2c928d474e61819b1ed412e56358e64561cfb8a"
+          }
+        },
+        {
+          "client_id": "942985639490-gje9fkq3e1n2fq2mfi1t8oc9b74pk4e5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD31PNDsDJHg0Ht0gmviPtzm7I8Z7Ag_o0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "942985639490-gje9fkq3e1n2fq2mfi1t8oc9b74pk4e5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
