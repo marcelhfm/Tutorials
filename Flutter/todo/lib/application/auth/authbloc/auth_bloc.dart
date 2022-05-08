@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
-import '../../../domain/repositories/auth_repository.dart';
+import 'package:todo/domain/repositories/auth_repository.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -17,8 +16,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<AuthCheckRequestedEvent>((event, emit) async {
       final userOption = authRepository.getSignedInUser();
-      userOption.fold(
-          () => emit(AuthStateUnathorized()), (a) => AuthStateAuthenticated());
+      userOption.fold(() => emit(AuthStateUnathorized()),
+          (a) => emit(AuthStateAuthenticated()));
     });
   }
 }

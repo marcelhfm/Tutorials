@@ -11,18 +11,23 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
+        print("Checking State");
+        print("STATE: $state");
         if (state is AuthStateAuthenticated) {
-          //navigate to home
+          // navigate to home
           context.router.replace(const HomePageRoute());
         } else if (state is AuthStateUnathorized) {
-          //navigate to sign up
+          // navigate to signin
           context.router.replace(const SignUpPageRoute());
         }
       },
       child: Scaffold(
-          body: Center(
-              child: CircularProgressIndicator(
-                  color: Theme.of(context).colorScheme.secondary))),
+        body: Center(
+          child: CircularProgressIndicator(
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+        ),
+      ),
     );
   }
 }
