@@ -11,8 +11,6 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        print("Checking State");
-        print("STATE: $state");
         if (state is AuthStateAuthenticated) {
           // navigate to home
           context.router.replace(const HomePageRoute());

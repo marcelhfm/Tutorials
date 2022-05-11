@@ -50,7 +50,7 @@ class TodoModel {
     String? body,
     bool? done,
     int? color,
-    dynamic? serverTimeStamp,
+    dynamic serverTimeStamp,
   }) {
     return TodoModel(
       id: id ?? this.id,

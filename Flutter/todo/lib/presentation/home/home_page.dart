@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/auth/authbloc/auth_bloc.dart';
 import 'package:todo/application/todos/observer/observer_bloc.dart';
 import 'package:todo/injection.dart';
+import 'package:todo/presentation/home/widgets/home_body.dart';
 
 import '../routes/router.gr.dart';
 
@@ -38,7 +39,10 @@ class HomePage extends StatelessWidget {
                   }),
               title: const Text('To Dos'),
             ),
-            body: const Placeholder()),
+            body: const Padding(
+              padding: EdgeInsets.only(top: 8.0),
+              child: HomeBody(),
+            )),
       ),
     );
   }
