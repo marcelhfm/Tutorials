@@ -1,25 +1,24 @@
+import express from "express";
+
+const asyncWrapper = require("../middleware/async");
 const Task = require("../models/Task");
 
-const getAllTasks = async (req: any, res: any) => {
-  try {
+const getAllTasks = asyncWrapper(
+  async (req: express.Request, res: express.Response) => {
     const tasks = await Task.find({});
     res.status(200).json({ tasks });
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
   }
-};
+);
 
-const createTask = async (req: any, res: any) => {
-  try {
+const createTask = asyncWrapper(
+  async (req: express.Request, res: express.Response) => {
     const task = await Task.create(req.body);
     res.status(201).json({ task });
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
   }
-};
+);
 
-const getTask = async (req: any, res: any) => {
-  try {
+const getTask = asyncWrapper(
+  async (req: express.Request, res: express.Response) => {
     const { id: taskID } = req.params;
     const task = await Task.findById({ _id: taskID });
 
@@ -28,13 +27,11 @@ const getTask = async (req: any, res: any) => {
     }
 
     res.status(200).json({ task });
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
   }
-};
+);
 
-const deleteTask = async (req: any, res: any) => {
-  try {
+const deleteTask = asyncWrapper(
+  async (req: express.Request, res: express.Response) => {
     const { id: taskID } = req.params;
     const task = await Task.findOneAndDelete({ _id: taskID });
 
@@ -43,13 +40,11 @@ const deleteTask = async (req: any, res: any) => {
     }
 
     res.status(200).json({ task: null, status: "success" });
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
   }
-};
+);
 
-const updateTask = async (req: any, res: any) => {
-  try {
+const updateTask = asyncWrapper(
+  async (req: express.Request, res: express.Response) => {
     const { id: taskID } = req.params;
 
     const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
@@ -62,10 +57,8 @@ const updateTask = async (req: any, res: any) => {
     }
 
     res.status(200).json({ task });
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
   }
-};
+);
 
 module.exports = {
   getAllTasks,

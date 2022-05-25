@@ -1,7 +1,10 @@
 import express from "express";
 import connectDB from "./db/connectDB";
-const tasks = require("./routes/tasks");
 import dotenv from "dotenv";
+
+const tasks = require("./routes/tasks");
+const notFound = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 
 dotenv.config();
 const app = express();
@@ -10,11 +13,9 @@ const app = express();
 app.use(express.json());
 
 // Routes
-app.get(`/hello`, (req, res) => {
-  res.send("Task Manager App");
-});
-
 app.use("/api/v1/tasks", tasks);
+app.use(notFound);
+app.use(errorHandlerMiddleware);
 
 const port = 3000;
 
