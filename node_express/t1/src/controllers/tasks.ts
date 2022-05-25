@@ -2,6 +2,7 @@ import express from "express";
 
 const asyncWrapper = require("../middleware/async");
 const Task = require("../models/Task");
+const { createCustomError, CustomAPIError } = require("../errors/custom-error");
 
 const getAllTasks = asyncWrapper(
   async (req: express.Request, res: express.Response) => {
@@ -18,12 +19,12 @@ const createTask = asyncWrapper(
 );
 
 const getTask = asyncWrapper(
-  async (req: express.Request, res: express.Response) => {
+  async (req: express.Request, res: express.Response, next: Function) => {
     const { id: taskID } = req.params;
     const task = await Task.findById({ _id: taskID });
 
     if (!task) {
-      return res.status(404).json({ msg: `No task with id: ${taskID}` });
+      return next(createCustomError(`No task with id: ${taskID}`, 404));
     }
 
     res.status(200).json({ task });
@@ -31,12 +32,12 @@ const getTask = asyncWrapper(
 );
 
 const deleteTask = asyncWrapper(
-  async (req: express.Request, res: express.Response) => {
+  async (req: express.Request, res: express.Response, next: Function) => {
     const { id: taskID } = req.params;
     const task = await Task.findOneAndDelete({ _id: taskID });
 
     if (!task) {
-      return res.status(404).json({ msg: `No task with id: ${taskID}` });
+      return next(createCustomError(`No task with id: ${taskID}`, 404));
     }
 
     res.status(200).json({ task: null, status: "success" });
@@ -44,7 +45,7 @@ const deleteTask = asyncWrapper(
 );
 
 const updateTask = asyncWrapper(
-  async (req: express.Request, res: express.Response) => {
+  async (req: express.Request, res: express.Response, next: Function) => {
     const { id: taskID } = req.params;
 
     const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
@@ -53,7 +54,7 @@ const updateTask = asyncWrapper(
     });
 
     if (!task) {
-      return res.status(404).json({ msg: `No task with id: ${taskID}` });
+      return next(createCustomError(`No task with id: ${taskID}`, 404));
     }
 
     res.status(200).json({ task });
